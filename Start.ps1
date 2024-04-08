@@ -56,12 +56,12 @@ function ScriptSchedule {
         If ($Directory) 
         {
             $TautulliTriggers = Get-ChildItem $inputDir -Recurse | Where-Object -FilterScript {
-                $_.Extension -match 'posterizearr'
+                $_.Extension -match 'posterizarr'
             }
     
             foreach($item in $TautulliTriggers)
             {
-                write-host "Found .posterizearr file..."
+                write-host "Found .posterizarr file..."
                 
                 # Get trigger Values
                 $triggerargs = Get-Content $item
@@ -88,6 +88,7 @@ function ScriptSchedule {
                 write-host ""
                 write-host "Container is running since: " -NoNewline
                 write-host "$totalTime" -ForegroundColor Cyan
+                CompareScriptVersion
                 write-host ""
                 Write-Host "Next Script Run is at: $NextScriptRunTime"
                 Remove-Item "$inputDir/$($item.Name)" -Force -Confirm:$false
