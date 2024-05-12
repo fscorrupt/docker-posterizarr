@@ -172,6 +172,15 @@ if (-not (test-path "$PSScriptRoot\config\config.json")) {
     )
 }
 
+# Check temp dir if there is a Currently running file present
+$CurrentlyRunning = "$PSScriptRoot\config\temp\Posterizarr.Running"
+
+
+# Clear Running File
+if (Test-Path $CurrentlyRunning) {
+    Remove-Item -LiteralPath $CurrentlyRunning | out-null
+    write-host "Cleared .running file..." -ForegroundColor Green
+}
 # Show integraded Scripts
 $StartTime = Get-Date
 write-host "Container Started..." -ForegroundColor Green
