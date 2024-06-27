@@ -1,4 +1,6 @@
 # Base Image
+# https://mcr.microsoft.com/v2/powershell/tags/list
+# Imagemagick 7.1.1.34
 FROM mcr.microsoft.com/powershell:7.4-alpine-3.17
 
 # Labels
