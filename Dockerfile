@@ -1,6 +1,7 @@
 # Base Image
 # https://mcr.microsoft.com/powershell/tags/list
-# Imagemagick 7.1.1.36
+# Imagemagick 7.1.1.37
+# pwsh 7.4.2
 FROM ghcr.io/fscorrupt/posterizarr-im-pwsh:latest
 
 # Labels
