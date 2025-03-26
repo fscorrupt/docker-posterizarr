@@ -1,11 +1,12 @@
 # Base Image
 # https://mcr.microsoft.com/en-us/product/powershell/tags
+# Imagemagick 7.1.1.46
 FROM lscr.io/linuxserver/baseimage-ubuntu:jammy
 
 # Labels
 LABEL maintainer=fscorrupt
 LABEL org.opencontainers.image.source=https://github.com/fscorrupt/docker-posterizarr
-LABEL imagemagick.version=7.1.1.44
+LABEL imagemagick.version=7.1.1.46
 LABEL powershell.version=7.5.0
 
 # Set the distribution channel for PowerShell
@@ -32,8 +33,9 @@ RUN wget -q "https://packages.microsoft.com/config/ubuntu/22.04/packages-microso
     apt-get update && \
     apt-get install -y powershell
 
-# Install ImageMagick using the external script
-RUN t=$(mktemp) && \
+# Install ImageMagick using BuildKit cache
+RUN --mount=type=cache,target=/var/cache/imagemagick \
+    t=$(mktemp) && \
     wget 'https://dist.1-2.dev/imei.sh' -qO "$t" && \
     bash "$t" && \
     rm "$t"
